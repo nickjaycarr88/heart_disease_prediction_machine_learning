@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet", href="{{ url_for('static', filename='css/prediction_result.css')}}">
 </head>
 <body>
+    <div class = "prediction_div">
     <h1>Prediction</h1>
-    {%if data==0%}
+    {%if data==1%}
     <h1>Heart Disease</h1>
     {%else%}
     <h1>No Heart Disease</h1>
     {%endif%}
+    </div>
 </body>
 </html>

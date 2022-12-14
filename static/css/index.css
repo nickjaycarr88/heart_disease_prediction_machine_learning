@@ -1,4 +1,56 @@
 body{
+    margin: 10px;
+    padding: 10px;
     font-style: italic;
-    font-family: 'Courier New', Courier, monospace;
+    font-family:  Courier, monospace;
+    background-color: #FF8A8A;
+}
+/* img{
+    width:100%;
+}
+.heart{
+    width:200px;
+    height:300px;
+    display: inline-block;
+} */
+.heart { 
+    width: 20%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+
+}
+.picture1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form_index {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color:#FF5C5C;
+}
+.submit_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+.info {
+    margin: 10px;
+    padding: 50px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
 }
