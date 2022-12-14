@@ -6,6 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import svm
 from sklearn.svm import SVC
 import pickle
+from flask_sqlalchemy import SQLAlchemy
 
 heart_disease_data = pd.read_csv('heart.csv')
 
@@ -89,6 +90,47 @@ SVC_best_params.fit(X_train, y_train)
 
 app = Flask(__name__)
 
+ENV = 'dev'
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/Heartdisease'
+else:
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+app.app_context().push()
+
+class Heart_Disease_data(db.Model):
+    __tablename__ = 'heart disease data'
+    Age = db.Column(db.Integer, primary_key=True)
+    Sex = db.Column(db.Integer)
+    Chest_Pain_Type = db.Column(db.Integer)
+    Resting_BP = db.Column(db.Integer)
+    Cholesterol = db.Column(db.Integer)
+    Fasting_bs = db.Column(db.Integer)
+    Resting_ECG = db.Column(db.Integer)
+    MaxHR = db.Column(db.Integer)
+    Exercise_Angina = db.Column(db.Integer)
+    Old_Peak = db.Column(db.Float)
+    ST_Slope = db.Column(db.Integer)
+
+    def __init__(self, Sex, Chest_Pain_Type, Resting_BP, Cholesterol, Fasting_bs, Resting_ECG, MaxHR, Exercise_Angina, Old_Peak, ST_Slope ):
+        
+        self.Sex=Sex
+        self.Chest_Pain_Type=Chest_Pain_Type
+        self.Resting_BP=Resting_BP
+        self.Cholesterol=Cholesterol
+        self.Fasting_bs=Fasting_bs
+        self.Resting_ECG=Resting_ECG
+        self.MaxHR=MaxHR
+        self.Exercise_Angina=Exercise_Angina
+        self.Old_Peak=Old_Peak
+        self.ST_Slope=ST_Slope
+
+
+
 
 @app.route('/', methods=["GET"])
 def home():
@@ -123,6 +165,28 @@ def predict():
 
 
     return render_template('prediction_result.html', data=prediction)
+
+@app.route('/submit', methods=["GET", "POST"])
+def submit():
+    if request.method == 'POST':
+        
+        Sex = request.form['Sex']
+        Chest_Pain_Type = request.form['Chest_Pain_Type']
+        Resting_BP = request.form['Resting_BP']
+        Cholesterol = request.form['Cholesterol']
+        Fasting_bs = request.form['Fasting_bs']
+        Resting_ECG = request.form['Resting_ECG']
+        MaxHR = request.form['MaxHR']
+        Exercise_Angina = request.form['Exercise_Angina']
+        Old_Peak = request.form['Old_Peak']
+        ST_Slope = request.form['ST_Slope']
+        # if Age == '' or Sex == '' or Chest_Pain_Type == '' or Resting_BP == '' or Cholesterol == '' or Fasting_bs == '' or Resting_ECG == '' or MaxHR == '' or Exercise_Angina == '' or Old_Peak == '' or ST_Slope == '':
+        #     return render_template('index.html', message='Please fill out all of the cells')
+        # print(Age, Sex, Chest_Pain_Type)
+        data=Heart_Disease_data(Sex, Chest_Pain_Type, Resting_BP, Cholesterol, Fasting_bs, Resting_ECG, MaxHR, Exercise_Angina, Old_Peak, ST_Slope)
+        db.session.add(data)
+        db.session.commit
+
 
 if __name__ == '__main__':
     app.run(debug=True)

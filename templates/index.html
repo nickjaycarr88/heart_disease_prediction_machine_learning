@@ -12,8 +12,10 @@
 
   </div>
   <h1>Heart Disease Prediction</h1>
-  <!-- <img src="https://github.com/nickjaycarr88/heart_disease_prediction_machine_learning/blob/main/images/heart.jpg">
-   -->
+  {%if message %}
+    <p class = 'message'>{{ message | safe }}</p>
+  {%endif%}
+  
    <form method="POST", action="/predict">
     <b> Age :  <input type="text", name='Age', placeholder="enter 1"> <br><br>
      Sex :  <input type="text", name='Sex', placeholder="enter 2"> <br><br>
