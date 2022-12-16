@@ -3,9 +3,22 @@ body{
     padding: 10px;
     font-style: italic;
     font-family: 'Courier New', Courier, monospace;
-    background-color: green;
+    background-color: #FF8A8A;
 }
 .prediction_div{
     background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color:#FF5C5C;
 
+}
+.prediction_1_0{
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #FF8A8A;
 }

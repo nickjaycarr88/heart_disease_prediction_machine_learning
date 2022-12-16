@@ -9,12 +9,16 @@
 </head>
 <body>
     <div class = "prediction_div">
-    <h1>Prediction</h1>
-    {%if data==1%}
-    <h1>Heart Disease</h1>
-    {%else%}
-    <h1>No Heart Disease</h1>
-    {%endif%}
+        <h1>Prediction</h1>
+    </div>
+    <br></br>
+    <div class = 'prediction_1_0'>
+        {%if data==1%}
+        <h1>There is a high chance that you may incur heart failure. Please see a cardiovascular specialist. </h1>
+         {%else%}
+        <h1>It looks like you have a healthy heart. </h1>
+        {%endif%}
+    </div>
     </div>
 </body>
 </html>
