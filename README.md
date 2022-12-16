@@ -43,4 +43,6 @@ class Heart_Disease_data(db.Model):
 ```
 ## Web application
 ### Once landing on the page, the user inputs their name, age, sex, chest pain type, resting BP, cholesterol, fasting bs, resting ecg, maximum heart rate, exercise angina, old peak and st slope.
+![Image Link](https://github.com/nickjaycarr88/heart_disease_prediction_machine_learning/blob/main/images/landing.png)
 
+### The user is then redirected to the prediction page, which will tell if they are at risk of heart disease.
